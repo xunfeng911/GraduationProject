@@ -1,0 +1,18 @@
+.radios {
+  display: flex;
+  justify-content: space-around;
+}
+.radio-label {
+  border: 1px solid rgb(255, 51, 102);
+  border-radius: 10px;
+  padding: 0 16px;
+  line-height: 32px;
+  font-size: 12px;
+}
+.radio-label-checked {
+  color: #fff;
+  background: rgb(232, 30, 97);
+}
+.radio-input {
+  display: none;
+}
