@@ -38,5 +38,5 @@ components/**/*.jsx
 !components/**/__tests__/*.js
 !components/**/__tests__/*.js.snap
 /.history
-./next
+.next
 node_modules

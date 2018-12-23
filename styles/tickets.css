@@ -5,6 +5,7 @@
   left: 0;
   right: 0;
   padding: 24px 32px;
+  overflow: scroll;
 }
 .input-search {
   position: relative;
@@ -54,6 +55,7 @@
   -o-transform: translateY(-50%);
 }
 .button {
+  margin: 0;
   border: 0;
   border-radius: 4px;
   border-top-left-radius: 0;
