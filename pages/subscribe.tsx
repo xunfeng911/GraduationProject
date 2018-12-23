@@ -3,21 +3,21 @@ import RadioGroup from '../components/Radio/index';
 import { createForm, formShape } from 'rc-form';
 import '../styles/subscribe.css';
 
-class SubscribePage extends React.Component {
+class SubscribePage extends React.Component<any, any> {
   static propTypes = {
     form: formShape
   };
-  constructor(props) {
+  constructor(props: any) {
     super(props);
   }
-  onSubmit = (e) => {
+  onSubmit = (e: any) => {
     e.preventDefault();
-    this.props.form.validateFields((error, value) => {
+    this.props.form.validateFields((error: any, value: any) => {
       console.log(this.props.form.getFieldError('username'))
       console.log(error, value);
     });
   }
-  getError = (key) => {
+  getError = (key: any) => {
     const errs = this.props.form.getFieldError(key);
     let res = null;
     if (errs) {
@@ -26,7 +26,7 @@ class SubscribePage extends React.Component {
     return res;
   }
   render() {
-    const { getFieldDecorator, getFieldError } = this.props.form;
+    const { getFieldDecorator } = this.props.form;
     const userNameOptions = {
       rules: [{
         required: true,

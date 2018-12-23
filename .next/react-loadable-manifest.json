@@ -1,25 +1,13 @@
 {
-  "./radio.css": [
+  "../styles/index.css": [
     {
-      "id": "./components/Radio/radio.css",
-      "name": "./components/Radio/radio.css",
+      "id": "./styles/index.css",
+      "name": "./styles/index.css",
       "file": "static/chunks/styles.js",
       "publicPath": "static/chunks/styles.js"
     }
   ],
   "undefined": [
-    {
-      "id": 8,
-      "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": 9,
-      "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
     {
       "id": 4,
       "name": null,
@@ -33,16 +21,34 @@
       "publicPath": "static/chunks/styles.js"
     },
     {
-      "id": 6,
+      "id": 7,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": 8,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": 10,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": 11,
       "name": null,
       "file": "static/chunks/styles.js",
       "publicPath": "static/chunks/styles.js"
     }
   ],
-  "../styles/subscribe.css": [
+  "./radio.css": [
     {
-      "id": "./styles/subscribe.css",
-      "name": "./styles/subscribe.css",
+      "id": "./components/Radio/radio.css",
+      "name": "./components/Radio/radio.css",
       "file": "static/chunks/styles.js",
       "publicPath": "static/chunks/styles.js"
     }
@@ -67,6 +73,14 @@
     {
       "id": "./styles/tickerCard.css",
       "name": "./styles/tickerCard.css",
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    }
+  ],
+  "../styles/subscribe.css": [
+    {
+      "id": "./styles/subscribe.css",
+      "name": "./styles/subscribe.css",
       "file": "static/chunks/styles.js",
       "publicPath": "static/chunks/styles.js"
     }

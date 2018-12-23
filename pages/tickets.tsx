@@ -1,10 +1,10 @@
-import React from 'react';
+import * as React from 'react';
 import '../styles/tickets.css';
 import '../styles/font.css';
 import Ticket from '../components/Ticket';
 
-export default class extends React.Component {
-  constructor(props) {
+export default class extends React.Component<any, any> {
+  constructor(props: any) {
     super(props);
     this.state = {
       value: null,
@@ -14,7 +14,7 @@ export default class extends React.Component {
   componentDidMount() {
     console.log(1);
   }
-  onChange = (e) => this.setState({value: e.target.value});
+  onChange = (e: any) => this.setState({value: e.target.value});
 
   render() {
     return (
@@ -32,7 +32,7 @@ export default class extends React.Component {
             </button>
           </span>
         </div>
-        {this.state.datas.map((res, i) => (
+        {this.state.datas.map((res: any, i: any) => (
           <Ticket key={i} />
         ))}
        <p className="tickets-index">
