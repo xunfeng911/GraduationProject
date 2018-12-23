@@ -173,7 +173,7 @@ var Index = function Index() {
 
 /***/ }),
 
-/***/ 10:
+/***/ 3:
 /*!******************************!*\
   !*** multi ./pages/index.js ***!
   \******************************/
@@ -198,5 +198,5 @@ module.exports = dll_70ac8b1325b365d29cd0;
 
 /***/ })
 
-},[[10,"static/runtime/webpack.js","styles"]]]));;
+},[[3,"static/runtime/webpack.js","styles"]]]));;
 //# sourceMappingURL=index.js.map

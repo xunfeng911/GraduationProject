@@ -1,27 +1,4 @@
 {
-  "mini-css-extract-plugin node_modules/._css-loader@1.0.0@css-loader/index.js??ref--5-1!styles/subscribe.css": [
-    {
-      "modules": {
-        "byIdentifier": {
-          "node_modules/._css-loader@1.0.0@css-loader/index.js??ref--5-1!styles/subscribe.css": 0,
-          "node_modules/._css-loader@1.0.0@css-loader/lib/css-base.js": 1
-        },
-        "usedIds": {
-          "0": 0,
-          "1": 1
-        }
-      },
-      "chunks": {
-        "byName": {
-          "mini-css-extract-plugin": 0
-        },
-        "bySource": {},
-        "usedIds": [
-          0
-        ]
-      }
-    }
-  ],
   "mini-css-extract-plugin node_modules/._css-loader@1.0.0@css-loader/index.js??ref--5-1!styles/index.css": [
     {
       "modules": {
@@ -91,11 +68,11 @@
       }
     }
   ],
-  "mini-css-extract-plugin node_modules/._css-loader@1.0.0@css-loader/index.js??ref--5-1!components/Radio/radio.css": [
+  "mini-css-extract-plugin node_modules/._css-loader@1.0.0@css-loader/index.js??ref--5-1!styles/subscribe.css": [
     {
       "modules": {
         "byIdentifier": {
-          "node_modules/._css-loader@1.0.0@css-loader/index.js??ref--5-1!components/Radio/radio.css": 0,
+          "node_modules/._css-loader@1.0.0@css-loader/index.js??ref--5-1!styles/subscribe.css": 0,
           "node_modules/._css-loader@1.0.0@css-loader/lib/css-base.js": 1
         },
         "usedIds": {
@@ -119,6 +96,29 @@
       "modules": {
         "byIdentifier": {
           "node_modules/._css-loader@1.0.0@css-loader/index.js??ref--5-1!styles/tickerCard.css": 0,
+          "node_modules/._css-loader@1.0.0@css-loader/lib/css-base.js": 1
+        },
+        "usedIds": {
+          "0": 0,
+          "1": 1
+        }
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin node_modules/._css-loader@1.0.0@css-loader/index.js??ref--5-1!components/Radio/radio.css": [
+    {
+      "modules": {
+        "byIdentifier": {
+          "node_modules/._css-loader@1.0.0@css-loader/index.js??ref--5-1!components/Radio/radio.css": 0,
           "node_modules/._css-loader@1.0.0@css-loader/lib/css-base.js": 1
         },
         "usedIds": {
@@ -787,11 +787,11 @@
       "static/runtime/webpack.js": 1,
       "styles": 2,
       "static/runtime/main.js": 3,
-      "static/7uv1ku3qVMZ8RwnWccZtB/pages/index.js": 4,
-      "static/7uv1ku3qVMZ8RwnWccZtB/pages/subscribe.js": 5,
-      "static/7uv1ku3qVMZ8RwnWccZtB/pages/tickets.js": 6,
-      "static/7uv1ku3qVMZ8RwnWccZtB/pages/_app.js": 7,
-      "static/7uv1ku3qVMZ8RwnWccZtB/pages/_error.js": 8
+      "static/AhGvx3RbLATBzBVuXk~oA/pages/index.js": 4,
+      "static/AhGvx3RbLATBzBVuXk~oA/pages/subscribe.js": 5,
+      "static/AhGvx3RbLATBzBVuXk~oA/pages/tickets.js": 6,
+      "static/AhGvx3RbLATBzBVuXk~oA/pages/_app.js": 7,
+      "static/AhGvx3RbLATBzBVuXk~oA/pages/_error.js": 8
     },
     "bySource": {},
     "usedIds": [
