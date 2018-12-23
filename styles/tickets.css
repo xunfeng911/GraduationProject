@@ -6,6 +6,7 @@
   right: 0;
   padding: 24px 32px;
   overflow: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 .input-search {
   position: relative;

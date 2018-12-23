@@ -9,6 +9,7 @@
   padding-top: 0;
   color: #fff;
   overflow: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 .sub-tit {
   position: relative;
@@ -43,6 +44,9 @@
 }
 .sub-input:focus {
   outline: none;
+}
+.sub-form-item-radio {
+  margin-bottom: 24px;
 }
 .sub-form-item > p:last-child {
   margin-top: 3px;

@@ -93,7 +93,7 @@ class SubscribePage extends React.Component {
             <img src="/static/santaClaus.svg" />
           </h3>
           <div className="sub-form-item">
-            <p>路线</p>
+            <p className="sub-form-item-radio">路线</p>
             {getFieldDecorator('route', routeOptions)(
               <RadioGroup  name="route" radiosData={routeRadiosData} />
             )}
@@ -101,7 +101,7 @@ class SubscribePage extends React.Component {
           </div>
 
           <div className="sub-form-item">
-            <p>日期</p>
+            <p className="sub-form-item-radio">日期</p>
             {getFieldDecorator('startDate', startDateOptions)(
                <RadioGroup  name="route" radiosData={dateRadiosData} />
             )}
@@ -109,7 +109,7 @@ class SubscribePage extends React.Component {
           </div>
 
           <div className="sub-form-item">
-            <p>时间</p>
+            <p className="sub-form-item-radio">时间</p>
             {getFieldDecorator('startTime', startTimeOptions)(
               <RadioGroup  name="route" radiosData={timeRadiosData} />
             )}
