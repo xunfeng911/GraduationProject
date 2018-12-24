@@ -39,5 +39,5 @@ const bootstrap = async () => {
   app.use(ResFormatter);
   app.use(routeBuild.routes());
   app.use(routeBuild.allowedMethods());
-  app.listen(2828);
+  app.listen(2827);
 };
