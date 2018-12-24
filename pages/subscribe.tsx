@@ -1,7 +1,9 @@
 import React from 'react';
 import RadioGroup from '../components/Radio/index';
+import Router from 'next/router'
 import { createForm, formShape } from 'rc-form';
 import '../styles/subscribe.css';
+import { routeOptions, routeRadiosData, startDateOptions, dateRadiosData, startTimeOptions, timeRadiosData, userNameOptions, mobileOptions, stuIdOptions, addressOptions } from '../components/subscribeData';
 
 class SubscribePage extends React.Component<any, any> {
   static propTypes = {
@@ -13,8 +15,26 @@ class SubscribePage extends React.Component<any, any> {
   onSubmit = (e: any) => {
     e.preventDefault();
     this.props.form.validateFields((error: any, value: any) => {
-      console.log(this.props.form.getFieldError('username'))
       console.log(error, value);
+      if(!error) {
+        const price = routeRadiosData.filter(itm => itm.value === value.route)[0].price;
+        const fetchData = {
+          ...value,
+          price,
+          mobile: +value.mobile,
+          stuId: +value.stuId
+        };
+        fetch("http://localhost:2828/ticket/create", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(fetchData)
+        }).then(res => {
+          window.localStorage.setItem('tickets', JSON.stringify([fetchData]));
+          Router.push({pathname: '/tickets'});
+        })
+      }
     });
   }
   getError = (key: any) => {
@@ -27,64 +47,6 @@ class SubscribePage extends React.Component<any, any> {
   }
   render() {
     const { getFieldDecorator } = this.props.form;
-    const userNameOptions = {
-      rules: [{
-        required: true,
-        message: '请输入姓名',
-      },]
-    };
-    const mobileOptions =  {
-      rules: [{
-        required: true,
-        message: '请输入正确手机号'
-      }]
-    };
-    const stuIdOptions = {
-      rules: [{
-        required: true,
-        message: '请输入正确的学号'
-      }]
-    };
-    const addressOptions = {
-      rules: [{
-        required: true,
-        type: 'string',
-        message: '请输入宿舍地址'
-      }]
-    };
-    const routeOptions = {
-      rules: [{
-        required: true,
-        message: '请选择路线'
-      }]
-    };
-    const routeRadiosData = [
-      {key: '飞机场', value: 'plane'},
-      {key: '火车站', value: 'train'},
-      {key: '高铁站', value: 'high-speed'}
-    ];
-    const startDateOptions = {
-      rules: [{
-        required: true,
-        message: '请选择出发日期'
-      }]
-    };
-    const dateRadiosData = [
-      {key: '1月19日', value: '1月19日'},
-      {key: '1月20日', value: '1月10日'},
-      {key: '1月21日', value: '1月21日'}
-    ];
-    const startTimeOptions = {
-      rules: [{
-        required: true,
-        message: '请选择出发时间'
-      }]
-    };
-    const timeRadiosData = [
-      {key: '9:00', value: '9:00'},
-      {key: '12:00', value: '12:00'},
-      {key: '15:00', value: '15:00'}
-    ];
     return (
       <div className="subscribe">
         <form className="sub-form">
@@ -123,7 +85,7 @@ class SubscribePage extends React.Component<any, any> {
 
           <div className="sub-form-item">
             <p>姓名</p>
-            {getFieldDecorator('username', userNameOptions)(
+            {getFieldDecorator('userName', userNameOptions)(
               <input className="sub-input" />
             )}
             <p>{this.getError('username')}</p>

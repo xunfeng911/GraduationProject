@@ -1,7 +1,7 @@
 
 
 import { Context } from 'koa';
-import { GET, routePrefix, required } from '../route/decorator';
+import { GET, routePrefix, required } from '../Middlewares/route/decorator';
 @routePrefix("/home")
 export class TestController {
   constructor() {

@@ -8,11 +8,16 @@ export default class extends React.Component<any, any> {
     super(props);
     this.state = {
       value: null,
-      datas: [{}]
+      data: []
     }
   }
   componentDidMount() {
-    console.log(1);
+    const data = window.localStorage.getItem('tickets');
+    if (data) {
+      this.setState({
+        data: JSON.parse(data)
+      })
+    }
   }
   onChange = (e: any) => this.setState({value: e.target.value});
 
@@ -32,8 +37,8 @@ export default class extends React.Component<any, any> {
             </button>
           </span>
         </div>
-        {this.state.datas.map((res: any, i: any) => (
-          <Ticket key={i} />
+        {this.state.data.map((res: any, i: any) => (
+          <Ticket key={i} data={res} />
         ))}
        <p className="tickets-index">
         <a href="index">去订票</a>
