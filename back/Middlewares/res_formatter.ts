@@ -2,7 +2,6 @@ import { Context } from 'koa';
 export default async function ResFormatter(ctx: Context, next: any) {
   try {
     await next();
-    console.log(ctx.params);
     const status = ctx.status;
     const data = ctx.body;
     if (ctx.method.toLowerCase() !== 'option' && status !== 404) {

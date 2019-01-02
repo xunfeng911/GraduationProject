@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, getRepository, ManyToMany, JoinTable, getConnection } from 'typeorm';
+import { User } from './user';
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, getRepository, getConnection, ManyToOne } from 'typeorm';
 
 
 @Entity()
@@ -30,6 +31,9 @@ export class Ticket extends BaseEntity {
   @Column()
   price!: number;
 
+  @ManyToOne(type => User, user => user.tickets)
+  user!: User;
+
 }
 export interface TicketProps {
   id: number;
@@ -41,6 +45,7 @@ export interface TicketProps {
   startDate: string;
   address: string;
   price: number;
+  openid: string;
 }
 class TicketModel {
   async create(data: TicketProps) {
@@ -53,10 +58,18 @@ class TicketModel {
     _ticket.startDate = data.startDate;
     _ticket.address = data.address;
     _ticket.price = data.price;
-    console.log(_ticket);
-
-   const a = await getConnection().manager.save(_ticket);
-   console.log(a);
+    const oldUser = await User.findOne({where: {openid: data.openid}});
+    if (oldUser) {
+      // console.log(oldUser.tickets)
+      // oldUser.tickets
+      // ? oldUser.tickets = [...oldUser.tickets, _ticket]
+      // : oldUser.tickets = [_ticket];
+      // await getConnection().manager.save(oldUser);
+      _ticket.user = oldUser;
+      await getConnection().manager.save(_ticket);
+    } else {
+      return false;
+    }
   return _ticket;
   }
   async getlistByStuId(stuId: number) {
@@ -74,6 +87,13 @@ class TicketModel {
         .where('mobile = :mobile', { mobile: mobile })
         .getMany();
     return data;
+  }
+  async getlistByUser(openid: string) {
+    const tickets = await  getRepository(Ticket)
+      .createQueryBuilder("ticket")
+      .leftJoinAndSelect("ticket.user", "user")
+      .getMany();
+    return tickets;
   }
 
 }

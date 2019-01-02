@@ -1,3 +1,4 @@
-import { TestController } from "./testController";
+import { BackController } from './backController';
 import { TicketController } from "./ticketController";
-export const controllers = [TestController, TicketController];
+
+export const controllers = [TicketController, BackController];

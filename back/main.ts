@@ -1,3 +1,4 @@
+import { Time } from './Models/time';
 import * as sourceMap from "source-map-support";
 import * as Koa from 'koa';
 import * as bodyParser from "koa-bodyparser";
@@ -11,6 +12,7 @@ import './Controllers/index';
 import setHeader from "./Middlewares/set_header";
 import ResFormatter from "./Middlewares/res_formatter";
 import { Ticket } from "./Models/ticket";
+import { User } from "./Models/user";
 
 sourceMap.install();
 const app = new Koa();
@@ -24,7 +26,7 @@ createConnection({
   username: 'root',
   password: 'love911',
   database: 'TicketTable',
-  entities: [Ticket],
+  entities: [Ticket, User, Time],
   synchronize: true,
 }).then(() => {
   bootstrap();

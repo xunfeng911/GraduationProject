@@ -5,6 +5,7 @@ p {
   position: relative;
   border-radius: 10px;
   background: #fff;
+  margin-bottom: 48px;
 }
 .ticket-card-icon {
   position: absolute;

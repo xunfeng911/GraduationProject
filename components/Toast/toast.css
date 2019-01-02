@@ -1,0 +1,37 @@
+
+.m-toast {
+  position: fixed;
+  width: 100%;
+  z-index: 999;
+  font-size: 14px;
+  text-align: center;
+  color: aliceblue;
+}
+.m-toast > span {
+  max-width: 50%;
+}
+.m-toast-mask {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 0;
+  top: 0;
+  transform: translateZ(1px);
+}
+.m-toast-nomask {
+  position: fixed;
+  max-width: 50%;
+  width: auto;
+  left: 50%;
+  top: 50%;
+  transform: translateZ(1px);
+}
+.m-toast-nomask > .m-toast-notice {
+  transform: translateX(-50%) translateY(-50%);
+}
+.m-toast-notice-content > .m-toast-text {
+  border-radius: 5px;
+  padding: 23px 32px;
+  background: rgba(0, 0, 0, .8);
+}

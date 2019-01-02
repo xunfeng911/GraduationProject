@@ -8,7 +8,6 @@ export default class Ticket extends React.Component<{data: TicketProps}, any> {
   render() {
     const data = this.props.data;
     const route = routeRadiosData.filter(itm => itm.value === data.route)[0].key;
-    console.log(route);
     return (
       <div className="ticket-card">
         <i className="iconfont icon-success1-copy ticket-card-icon"></i>

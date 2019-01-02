@@ -4,6 +4,7 @@ import Router from 'next/router'
 import { createForm, formShape } from 'rc-form';
 import '../styles/subscribe.css';
 import { routeOptions, routeRadiosData, startDateOptions, dateRadiosData, startTimeOptions, timeRadiosData, userNameOptions, mobileOptions, stuIdOptions, addressOptions } from '../components/subscribeData';
+import Toast from '../components/Toast';
 
 class SubscribePage extends React.Component<any, any> {
   static propTypes = {
@@ -24,7 +25,7 @@ class SubscribePage extends React.Component<any, any> {
           mobile: +value.mobile,
           stuId: +value.stuId
         };
-        fetch("http://localhost:2828/ticket/create", {
+        fetch("http://xuncs.cn:2827/ticket/create", {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
@@ -32,7 +33,10 @@ class SubscribePage extends React.Component<any, any> {
           body: JSON.stringify(fetchData)
         }).then(res => {
           window.localStorage.setItem('tickets', JSON.stringify([fetchData]));
-          Router.push({pathname: '/tickets'});
+          Toast.show('预订成功！');
+          setTimeout(() => {
+            Router.push({pathname: '/tickets'});
+          }, 2000);
         })
       }
     });

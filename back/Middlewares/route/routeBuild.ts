@@ -26,7 +26,7 @@ export class RouteBuild {
             this._router[pathInfo.method.toLowerCase()](path, itm);
           });
         }
-        console.log(cls.green(`${pathInfo.method}:`), cls.cyan(`http://localhost:2828${path}`));
+        console.log(cls.green(`${pathInfo.method}:`), cls.cyan(`http://localhost:2827${path}`));
       }
       this._built = true;
     }
