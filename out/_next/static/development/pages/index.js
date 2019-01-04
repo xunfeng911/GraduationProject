@@ -125573,7 +125573,7 @@ function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      fetch('http://localhost:2827/back/times').then(function (res) {
+      fetch('http://xuncs.cn:2827/back/times').then(function (res) {
         return res.json();
       }).then(function (res) {
         var options = [];
@@ -125594,7 +125594,7 @@ function (_React$Component) {
     value: function getOption(date) {
       var _this3 = this;
 
-      fetch("http://localhost:2827/back/data/".concat(date), {
+      fetch("http://xuncs.cn:2827/back/data/".concat(date), {
         method: "GET",
         headers: {
           "Content-Type": "application/json"
