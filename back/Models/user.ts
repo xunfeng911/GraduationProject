@@ -30,7 +30,6 @@ export class User extends BaseEntity {
 
   @OneToMany(type => Ticket, ticket => ticket.user)
   tickets!: Ticket[];
-
 }
 export interface UserProps {
   id: number;
@@ -83,6 +82,5 @@ class UserModel {
         .getOne();
     return data;
   }
-
 }
 export const userModel = new UserModel();
