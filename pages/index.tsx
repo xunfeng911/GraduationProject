@@ -25,7 +25,7 @@ export default class BackPage extends React.Component<any, any> {
     }
   }
   componentDidMount() {
-    fetch('http://localhost:2827/back/times')
+    fetch('http://xuncs.cn:2827/back/times')
     .then(res => res.json())
     .then((res: any) => {
       let options: string = [];
@@ -37,7 +37,7 @@ export default class BackPage extends React.Component<any, any> {
     })
   }
   getOption (date: string) {
-    fetch(`http://localhost:2827/back/data/${date}`, {
+    fetch(`http://xuncs.cn:2827/back/data/${date}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json"
