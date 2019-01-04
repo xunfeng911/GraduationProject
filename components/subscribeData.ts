@@ -32,7 +32,7 @@ export const routeOptions = {
 export const routeRadiosData = [
   {key: '飞机场', value: 'plane', price: 35},
   {key: '火车站', value: 'train', price: 25},
-  {key: '高铁站', value: 'high-speed', price: 30}
+  {key: '高铁站', value: 'gaotie', price: 30}
 ];
 export const startDateOptions = {
   rules: [{

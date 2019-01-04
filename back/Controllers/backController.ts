@@ -1,6 +1,7 @@
 import { Context } from 'koa';
 import { POST, routePrefix, required, GET } from '../Middlewares/route/decorator';
 import { timeModel } from '../Models/time';
+import { ticketModel } from '../Models/ticket';
 
 @routePrefix("/back")
 export class BackController {
@@ -27,5 +28,28 @@ export class BackController {
   async getTimesByDate(ctx: Context) {
     const data = await timeModel.getOne(ctx.params.date);
     ctx.body = data;
+  }
+
+  @GET("data/:date")
+  async getDataByDate(ctx: Context) {
+    const tickets = await ticketModel.getlistByDate(ctx.params.date);
+    let result: any = {
+      times: [],
+      train: [],
+      plane: [],
+      gaotie: []
+    };
+    tickets.map(itm => {
+      if (itm.startTime !== result.times[result.times.length - 1]) {
+        result.times.push(itm.startTime);
+        result.train.push(0);
+        result.plane.push(0);
+        result.gaotie.push(0);
+        result[itm.route][result.times.length - 1] += 1;
+      } else {
+        result[itm.route][result.times.length - 1] += 1;
+      }
+    })
+    ctx.body = {...result, table: tickets};
   }
 }
