@@ -8,6 +8,18 @@ export class BackController {
   constructor() {
     console.log("create new instance back");
   }
+
+  @POST("login")
+  @required({params: ['name', 'password']})
+  async login(ctx: Context) {
+    let {name, password} = ctx.request.body;
+    if (name === 'keshe2019' && password === 'keshe2019') {
+      ctx.body = true;
+    } else {
+      ctx.body = false;
+    }
+  }
+
   @POST("times/create")
   @required({params: ['date', 'time']})
   async create(ctx: Context) {
