@@ -28,11 +28,16 @@ export default class  extends React.Component<any, any> {
             "Content-Type": "application/json"
           },
           body: JSON.stringify({...this.state})
-        }).then(res => {
-          window.sessionStorage.setItem('status', 'logined');
-          setTimeout(() => {
-            Router.push({pathname: '/home'});
-          }, 2000);
+        }).then((res: any) => {
+          if (!res.data) {
+            message.success('登录成功！');
+            window.sessionStorage.setItem('status', 'logined');
+            setTimeout(() => {
+              Router.push({pathname: '/home'});
+            }, 1500);
+          } else {
+            message.error('账号密码错误!');
+          }
         })
   }
   render() {

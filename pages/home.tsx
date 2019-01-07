@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Router from 'next/router';
 import ReactEcharts from 'echarts-for-react';
 import echarts from 'echarts';
 import Grid from '@material-ui/core/Grid';
@@ -25,6 +26,11 @@ export default class BackPage extends React.Component<any, any> {
     }
   }
   componentDidMount() {
+    let status = window.sessionStorage.getItem('status');
+    if (status !== 'logined') {
+      Router.push({pathname: '/'});
+      window.location.href ='/';
+    }
     fetch('http://xuncs.cn:2827/back/times')
     .then(res => res.json())
     .then((res: any) => {
