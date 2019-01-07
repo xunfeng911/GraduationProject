@@ -9,8 +9,11 @@
   margin-top: -100px;
   border:  1px solid #ddd;
   padding: 32px 64px;
-  text-align: center;
+  /* text-align: center; */
   width: 400px;
+}
+.back-h {
+  text-align: center;
 }
 .back-btn {
   width: 100%;
