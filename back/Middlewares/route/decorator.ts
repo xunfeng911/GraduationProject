@@ -71,7 +71,7 @@ const requireDescriptor = (target: any, name: string, descriptor: PropertyDescri
     if (rules.params) {
         rules.params = sureIsArray(rules.params);
         for (let name of rules.params) {
-          if (!ctx.request.body[name]) {
+          if (ctx.request.body[name] === null || ctx.request.body[name] === undefined) {
             ctx.body = `GET Request params: ${name} required`;
             ctx.throw(412, `GET Request params: ${name} required`);
           };
