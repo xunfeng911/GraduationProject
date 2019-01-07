@@ -1,3 +1,4 @@
+import { Total } from './total';
 import { User } from './user';
 import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, getRepository, getConnection, ManyToOne } from 'typeorm';
 
@@ -60,13 +61,21 @@ class TicketModel {
     _ticket.price = data.price;
     const oldUser = await User.findOne({where: {openid: data.openid}});
     if (oldUser) {
-      // console.log(oldUser.tickets)
-      // oldUser.tickets
-      // ? oldUser.tickets = [...oldUser.tickets, _ticket]
-      // : oldUser.tickets = [_ticket];
-      // await getConnection().manager.save(oldUser);
+      const date_time = data.startDate + ' ' + data.startTime;
+      Total.findOne({where: {date_time: date_time, type: data.route}}).then(oldTotal => {
+        if (oldTotal) {
+          oldTotal.total += 1;
+          getConnection().manager.save(oldTotal);
+        } else {
+          let _total = new Total();
+          _total.date_time = date_time;
+          _total.type = data.route;
+          _total.total = 1;
+          getConnection().manager.save(_total);
+        }
+      })
       _ticket.user = oldUser;
-      await getConnection().manager.save(_ticket);
+      getConnection().manager.save(_ticket);
     } else {
       return false;
     }
@@ -100,6 +109,13 @@ class TicketModel {
       .createQueryBuilder('ticket')
       .orderBy('ticket.startTime', 'DESC')
       .where('startDate = :startDate', { startDate: date })
+      .getMany();
+    return data;
+  }
+  async getlist() {
+    let data = await getRepository(Ticket)
+      .createQueryBuilder('ticket')
+      .orderBy('ticket.startTime', 'DESC')
       .getMany();
     return data;
   }

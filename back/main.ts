@@ -1,3 +1,4 @@
+import { Total } from './Models/total';
 import { Time } from './Models/time';
 import * as sourceMap from "source-map-support";
 import * as Koa from 'koa';
@@ -26,7 +27,7 @@ createConnection({
   username: 'root',
   password: 'love911',
   database: 'TicketTable',
-  entities: [Ticket, User, Time],
+  entities: [Ticket, User, Time, Total],
   synchronize: true,
 }).then(() => {
   bootstrap();

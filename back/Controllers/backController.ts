@@ -1,7 +1,9 @@
+import { Total } from './../Models/total';
 import { Context } from 'koa';
 import { POST, routePrefix, required, GET } from '../Middlewares/route/decorator';
 import { timeModel } from '../Models/time';
 import { ticketModel } from '../Models/ticket';
+import { getRepository } from 'typeorm';
 
 @routePrefix("/back")
 export class BackController {
@@ -63,5 +65,12 @@ export class BackController {
       }
     })
     ctx.body = {...result, table: tickets};
+  }
+  @GET("data")
+  async getData(ctx: Context) {
+    const data = await getRepository(Total)
+      .createQueryBuilder('total')
+      .getMany();
+    ctx.body = data;
   }
 }

@@ -46,12 +46,12 @@ class UserModel {
   async create(data: UserProps) {
     const oldUser = await User.findOne({where: {openid: data.openid}});
     if (oldUser) {
-      await getConnection()
-            .createQueryBuilder()
-            .update(User)
-            .where('openid = :openid', {openid: data.openid})
-            .set({session_key: data.session_key})
-            .execute();
+      getConnection()
+        .createQueryBuilder()
+        .update(User)
+        .where('openid = :openid', {openid: data.openid})
+        .set({session_key: data.session_key})
+        .execute();
       return oldUser;
     }
     let _user = new User();
@@ -63,7 +63,7 @@ class UserModel {
     _user.gender = data.gender || 0;
     _user.nickName = data.nickName || '';
     _user.tickets = [];
-    await getConnection().manager.save(_user);
+    getConnection().manager.save(_user);
     return _user;
   }
   async get(openid: number) {
