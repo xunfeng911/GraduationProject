@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -104,7 +104,7 @@ module.exports = require("/Users/xunfeng/work/Graduation/GraduationProject/node_
 
 /***/ }),
 
-/***/ 1:
+/***/ 2:
 /*!*******************************************************************!*\
   !*** multi ./node_modules/._next@7.0.2@next/dist/pages/_error.js ***!
   \*******************************************************************/

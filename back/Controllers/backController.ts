@@ -64,7 +64,7 @@ export class BackController {
         result[itm.route][result.times.length - 1] += 1;
       }
     })
-    ctx.body = {...result, table: tickets};
+    ctx.body = {...result};
   }
   @GET("data")
   async getData(ctx: Context) {
@@ -72,5 +72,11 @@ export class BackController {
       .createQueryBuilder('total')
       .getMany();
     ctx.body = data;
+  }
+  @GET("table")
+  @required({query: ['page', 'size', 'date']})
+  async getTable(ctx: Context) {
+    const {page, size, date, mobile} = ctx.query;
+      ctx.body = await ticketModel.getListPage(date, page, size, mobile);
   }
 }

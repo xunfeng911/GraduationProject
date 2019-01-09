@@ -31,6 +31,7 @@
     "rc-notification": "^3.3.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
+    "react-highlight-words": "^0.15.1",
     "rmc-notification": "^1.0.0",
     "rxjs": "^6.3.3",
     "source-map-support": "^0.5.9",

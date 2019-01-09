@@ -119,6 +119,30 @@ class TicketModel {
       .getMany();
     return data;
   }
-
+  async getListPage(date: string, page: number = 1, size: number = 20, mobile?: any) {
+    let data = await getRepository(Ticket)
+        .createQueryBuilder('ticket')
+        .where('startDate = :startDate', { startDate: date })
+        .orderBy('ticket.id', 'DESC');
+    if (mobile == undefined) {
+      data = data.where('mobile = :mobile', {mobile: mobile});
+      return {
+        data: await data.getMany(),
+        pageSet: {
+          total: await data.getCount(),
+          pageSize: size,
+          current: 1,
+        }
+      };
+    }
+    return {
+      data: await data.skip(Number((page - 1) * size)).take(Number(size)).getMany(),
+      pageSet: {
+        total: await data.getCount(),
+        pageSize: size,
+        current: page,
+      }
+    };
+}
 }
 export const ticketModel = new TicketModel();
