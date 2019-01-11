@@ -52,9 +52,10 @@ export default class BackPage extends React.Component<any, any> {
     //   this.getTableData(1);
     // })
     let options = ['2019-01-18', '2019-01-19', '2019-01-20'];
-    this.setState({selectDateOptions: options, selectDate: options[0]});
-    this.getOption(options[0]);
-    this.getTableData(1);
+    this.setState({selectDateOptions: options, selectDate: options[0]}, () => {
+      this.getOption(options[0]);
+      this.getTableData(1);
+    });
   }
   getOption (date: string) {
     fetch(`http://xuncs.cn:2827/back/data/${date}`, {
@@ -192,11 +193,11 @@ export default class BackPage extends React.Component<any, any> {
     });
   }
   getTableData = (page: any, mobile?: any) => {
-    fetch(`http://localhost:2827/back/table?date=${this.state.selectDate}&page=${page}&size=20&mobile=${mobile}`)
+    fetch(`http://xuncs.cn:2827/back/table?date=${this.state.selectDate}&page=${page}&size=20&mobile=${mobile}`)
     .then(res => res.json())
     .then((res: any) => {
       this.setState({
-        tableList: res.data.data,
+        tableList: res.data.data || [],
         pageSet: {...res.data.pageSet, showTotal: (total: any) => <span>共{total}条</span> }
       })
     })
