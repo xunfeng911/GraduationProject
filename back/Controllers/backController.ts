@@ -23,7 +23,7 @@ export class BackController {
   }
 
   @POST("times/create")
-  @required({params: ['date', 'time']})
+  @required({params: ['date', 'time', 'type']})
   async create(ctx: Context) {
     const data = await timeModel.create(ctx.request.body);
     if (data) {
@@ -36,7 +36,15 @@ export class BackController {
   @GET("times")
   async getAllTimes(ctx: Context) {
     const data = await timeModel.getAll();
-    ctx.body = data;
+    let result: any = {
+      train: [],
+      plane: [],
+      gaotie: []
+    };
+    data.map((itm: any) => {
+      result[itm.type].push(itm);
+    })
+    ctx.body = result;
   }
   @GET("times/:date")
   async getTimesByDate(ctx: Context) {

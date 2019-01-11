@@ -40,17 +40,21 @@ export default class BackPage extends React.Component<any, any> {
       Router.push({pathname: '/'});
       window.location.href ='/';
     }
-    fetch('http://xuncs.cn:2827/back/times')
-    .then(res => res.json())
-    .then((res: any) => {
-      let options: string = [];
-      res.data.map((itm: any) => {
-        options.push(itm.date);
-      })
-      this.setState({selectDateOptions: options, selectDate: options[0]});
-      this.getOption(options[0]);
-      this.getTableData(1);
-    })
+    // fetch('http://xuncs.cn:2827/back/times')
+    // .then(res => res.json())
+    // .then((res: any) => {
+    //   let options: string = [];
+    //   res.data.map((itm: any) => {
+    //     options.push(itm.date);
+    //   })
+    //   this.setState({selectDateOptions: options, selectDate: options[0]});
+    //   this.getOption(options[0]);
+    //   this.getTableData(1);
+    // })
+    let options = ['2019-01-18', '2019-01-19', '2019-01-20'];
+    this.setState({selectDateOptions: options, selectDate: options[0]});
+    this.getOption(options[0]);
+    this.getTableData(1);
   }
   getOption (date: string) {
     fetch(`http://xuncs.cn:2827/back/data/${date}`, {

@@ -9,6 +9,9 @@ export class Time extends BaseEntity {
   @Column()
   date!: string;
 
+  @Column()
+  type!: string;
+
   @Column("simple-array")
   times!: string[];
 
@@ -18,7 +21,7 @@ export interface TimeProps {
   id: number;
   date: string;
   time: string;
-
+  type: string;
 }
 class TimeModel {
   async create(data: TimeProps) {
@@ -44,6 +47,7 @@ class TimeModel {
     }
     let _newTime = new Time();
     _newTime.date = data.date;
+    _newTime.type = data.type;
     _newTime.times = [data.time];
     await getConnection().manager.save(_newTime);
     return true;

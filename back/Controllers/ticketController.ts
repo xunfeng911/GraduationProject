@@ -51,12 +51,22 @@ export class TicketController {
   async getTimes(ctx: Context) {
     const data = await timeModel.getAll();
     let result: any = {
-      date: [],
-      time: []
+      train: {
+        date: [],
+        time: []
+      },
+      gaotie: {
+        date: [],
+        time: []
+      },
+      plane: {
+        date: [],
+        time: []
+      }
     };
     data.map(itm => {
-      result.date.push(itm.date),
-      result.time.push(itm.times)
+      result[itm.type].date.push(itm.date),
+      result[itm.type].time.push(itm.times)
     });
     ctx.body = result;
   }
