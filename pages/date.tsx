@@ -205,9 +205,10 @@ export default class BackPage extends React.Component<any, any> {
   handleChange = (event: any) => {
     this.setState({
       selectDate: event.target.value
+    }, () => {
+      this.getOption(event.target.value);
+      this.getTableData(1);
     });
-    this.getOption(event.target.value);
-    this.getTableData(1);
   };
   getColumnSearchProps = (dataIndex: any) => ({
     filterDropdown: ({
