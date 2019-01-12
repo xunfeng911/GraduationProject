@@ -35,8 +35,9 @@ export class TicketController {
   @GET("list/:id")
   async getList(ctx: Context) {
     // const data = await ticketModel.getlistByUser(ctx.params.id);
-    const data = await userModel.getTicket(ctx.params.id);
-    ctx.body = data.tickets || null;
+    // const data = await userModel.getTicket(ctx.params.id);
+    const data = await ticketModel.getlistByOpenid(ctx.params.id);
+    ctx.body = [data] || null;
   }
   @POST("login")
   @required({query: 'code', params: ['avatarUrl', 'city', 'province', 'gender', 'nickName']})

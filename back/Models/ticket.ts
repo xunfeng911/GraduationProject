@@ -34,8 +34,6 @@ export class Ticket extends BaseEntity {
 
   @Column()
   openid!: string;
-  @ManyToOne(type => User, user => user.tickets)
-  user!: User;
 
 }
 export interface TicketProps {
@@ -62,26 +60,40 @@ class TicketModel {
     _ticket.address = data.address;
     _ticket.price = data.price;
     _ticket.openid = data.openid;
-    const oldUser = await User.findOne({where: {openid: data.openid}});
-    if (oldUser) {
-      const date_time = data.startDate + ' ' + data.startTime;
-      Total.findOne({where: {date_time: date_time, type: data.route}}).then(oldTotal => {
-        if (oldTotal) {
-          oldTotal.total += 1;
-          getConnection().manager.save(oldTotal);
-        } else {
-          let _total = new Total();
-          _total.date_time = date_time;
-          _total.type = data.route;
-          _total.total = 1;
-          getConnection().manager.save(_total);
-        }
-      })
-      _ticket.user = oldUser;
-      getConnection().manager.save(_ticket);
-    } else {
-      return false;
-    }
+    const date_time = data.startDate + ' ' + data.startTime;
+    Total.findOne({where: {date_time: date_time, type: data.route}}).then(oldTotal => {
+      if (oldTotal) {
+        oldTotal.total += 1;
+        getConnection().manager.save(oldTotal);
+      } else {
+        let _total = new Total();
+        _total.date_time = date_time;
+        _total.type = data.route;
+        _total.total = 1;
+        getConnection().manager.save(_total);
+      }
+    })
+    getConnection().manager.save(_ticket);
+    // const oldUser = await User.findOne({where: {openid: data.openid}});
+    // if (oldUser) {
+    //   const date_time = data.startDate + ' ' + data.startTime;
+    //   Total.findOne({where: {date_time: date_time, type: data.route}}).then(oldTotal => {
+    //     if (oldTotal) {
+    //       oldTotal.total += 1;
+    //       getConnection().manager.save(oldTotal);
+    //     } else {
+    //       let _total = new Total();
+    //       _total.date_time = date_time;
+    //       _total.type = data.route;
+    //       _total.total = 1;
+    //       getConnection().manager.save(_total);
+    //     }
+    //   })
+    //   _ticket.user = oldUser;
+    //   getConnection().manager.save(_ticket);
+    // } else {
+    //   return false;
+    // }
   return _ticket;
   }
   async delete(id: any) {
@@ -117,12 +129,11 @@ class TicketModel {
         .getMany();
     return data;
   }
-  async getlistByDate(date: string) {
+  async getlistByOpenid(id: string) {
     let data = await getRepository(Ticket)
       .createQueryBuilder('ticket')
-      .orderBy('ticket.startTime', 'DESC')
-      .where('startDate = :startDate', { startDate: date })
-      .getMany();
+      .where('openid = :openid', { openid: id })
+      .getOne();
     return data;
   }
   async getlist() {
