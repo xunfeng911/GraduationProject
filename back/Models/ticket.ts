@@ -32,6 +32,8 @@ export class Ticket extends BaseEntity {
   @Column()
   price!: number;
 
+  @Column()
+  openid!: string;
   @ManyToOne(type => User, user => user.tickets)
   user!: User;
 
@@ -59,6 +61,7 @@ class TicketModel {
     _ticket.startDate = data.startDate;
     _ticket.address = data.address;
     _ticket.price = data.price;
+    _ticket.openid = data.openid;
     const oldUser = await User.findOne({where: {openid: data.openid}});
     if (oldUser) {
       const date_time = data.startDate + ' ' + data.startTime;
