@@ -11,12 +11,26 @@ export class TicketController {
   }
   @POST("create")
   @required({params: ['userName', 'stuId', 'mobile', 'startTime', 'startDate', 'address', 'price', 'openid']})
-  async create(ctx: Context): Promise<void> {
+  async create(ctx: Context) {
     const data = await ticketModel.create(ctx.request.body);
     if (!data) {
       ctx.body = '???';
     }
     ctx.body = data;
+  }
+  @POST("update")
+  @required({params: ['userName', 'stuId', 'mobile', 'startTime', 'startDate', 'address', 'price', 'id']})
+  async update(ctx: Context) {
+    const data = await ticketModel.update(ctx.request.body);
+    if (!data) {
+      ctx.body = '???';
+    }
+    ctx.body = data;
+  }
+  @GET("delete/:id")
+  async delete(ctx: Context) {
+    const res = await ticketModel.delete(ctx.params.id);
+    ctx.body = res || true;
   }
   @GET("list/:id")
   async getList(ctx: Context) {

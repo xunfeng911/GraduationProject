@@ -81,6 +81,23 @@ class TicketModel {
     }
   return _ticket;
   }
+  async delete(id: any) {
+    return getConnection()
+    .createQueryBuilder()
+    .delete()
+    .from(Ticket)
+    .where("id = :id", { id: id })
+    .execute();
+  }
+  async update(data: TicketProps) {
+    console.log(data);
+    return getConnection()
+      .createQueryBuilder()
+      .update(Ticket)
+      .set({ ...data })
+      .where("id = :id", { id: data.id })
+      .execute();
+  }
   async getlistByStuId(stuId: number) {
     let data = await getRepository(Ticket)
         .createQueryBuilder('ticket')
@@ -96,13 +113,6 @@ class TicketModel {
         .where('mobile = :mobile', { mobile: mobile })
         .getMany();
     return data;
-  }
-  async getlistByUser(openid: string) {
-    const tickets = await  getRepository(Ticket)
-      .createQueryBuilder("ticket")
-      .leftJoinAndSelect("ticket.user", "user")
-      .getMany();
-    return tickets;
   }
   async getlistByDate(date: string) {
     let data = await getRepository(Ticket)
