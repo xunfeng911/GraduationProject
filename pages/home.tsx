@@ -27,11 +27,12 @@ export default class BackPage extends React.Component<any, any> {
     fetch('http://xuncs.cn:2827/back/data')
     .then(res => res.json())
     .then((res: any) => {
+
       this.setState({
         totalSource: res.data,
-        totalplane: res.data.filter((a) => a.type === 'plane').reduce((a, b) => a.total + b.total),
-        totalgaotie: res.data.filter((a) => a.type === 'gaotie').reduce((a, b) => a.total + b.total),
-        totaltrain: res.data.filter((a) => a.type === 'train').reduce((a, b) => a.total + b.total),
+        totalplane: res.data.filter((a) => a.type === 'plane').reduce((a, b) => a.total ? (a.total + b.total) : (a + b.total)),
+        totalgaotie: res.data.filter((a) => a.type === 'gaotie').reduce((a, b) => a.total ? (a.total + b.total) : (a + b.total)),
+        totaltrain: res.data.filter((a) => a.type === 'train').reduce((a, b) => a.total ? (a.total + b.total) : (a + b.total)),
       });
     })
   }
@@ -60,11 +61,11 @@ export default class BackPage extends React.Component<any, any> {
         </div>
         <Row>
           <Col xs={24} span={12}>
-            <p>
+            <p className="total-p">
               <p>火车：{this.state.totaltrain}人</p>
               <p>高铁：{this.state.totalgaotie}人</p>
               <p>飞机：{this.state.totalplane}人</p>
-              <p>共计：{this.state.totaltrain + this.state.totalgaotie + this.state.totalplane}</p>
+              <p>共计：{this.state.totaltrain + this.state.totalgaotie + this.state.totalplane}人</p>
             </p>
             <h3 style={{textAlign: 'center'}}>按总日期-时间-终点站的统计表</h3>
             <Table dataSource={this.state.totalSource} columns={TotalColumns}  pagination={false}/>
