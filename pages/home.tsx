@@ -13,6 +13,7 @@ export default class BackPage extends React.Component<any, any> {
     super(props);
     this.state = {
       totalSource: [],
+      total: 0
     }
   }
   componentDidMount() {
@@ -24,7 +25,7 @@ export default class BackPage extends React.Component<any, any> {
     fetch('http://xuncs.cn:2827/back/data')
     .then(res => res.json())
     .then((res: any) => {
-      this.setState({totalSource: res.data});
+      this.setState({totalSource: res.data, total: res.data.reduce((a, b) => a+b)});
     })
   }
 
@@ -52,7 +53,8 @@ export default class BackPage extends React.Component<any, any> {
         </div>
         <Row>
           <Col xs={24} span={12}>
-            <h3 style={{textAlign: 'center'}}>按总日期-时间-终点站的统计表</h3>
+
+            <h3 style={{textAlign: 'center'}}>按总日期-时间-终点站的统计表 <p>共计{this.state.total}人</p></h3>
             <Table dataSource={this.state.totalSource} columns={TotalColumns}  pagination={false}/>
           </Col>
         </Row>

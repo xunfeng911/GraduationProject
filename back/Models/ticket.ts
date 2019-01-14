@@ -136,6 +136,14 @@ class TicketModel {
       .getOne();
     return data;
   }
+  async getlistByDate(date: string) {
+    let data = await getRepository(Ticket)
+      .createQueryBuilder('ticket')
+      .orderBy('ticket.startTime', 'DESC')
+      .where('startDate = :startDate', { startDate: date })
+      .getMany();
+    return data;
+  }
   async getlist() {
     let data = await getRepository(Ticket)
       .createQueryBuilder('ticket')
