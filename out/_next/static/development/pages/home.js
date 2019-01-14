@@ -45527,7 +45527,10 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(BackPage).call(this, props));
     _this.state = {
-      totalSource: []
+      totalSource: [],
+      totalgaotie: 0,
+      totalplane: 0,
+      totaltrain: 0
     };
     return _this;
   }
@@ -45550,7 +45553,22 @@ function (_React$Component) {
         return res.json();
       }).then(function (res) {
         _this2.setState({
-          totalSource: res.data
+          totalSource: res.data,
+          totalplane: res.data.filter(function (a) {
+            return a.type === 'plane';
+          }).reduce(function (a, b) {
+            return a.total ? a.total + b.total : a + b.total;
+          }),
+          totalgaotie: res.data.filter(function (a) {
+            return a.type === 'gaotie';
+          }).reduce(function (a, b) {
+            return a.total ? a.total + b.total : a + b.total;
+          }),
+          totaltrain: res.data.filter(function (a) {
+            return a.type === 'train';
+          }).reduce(function (a, b) {
+            return a.total ? a.total + b.total : a + b.total;
+          })
         });
       });
     }
@@ -45569,7 +45587,7 @@ function (_React$Component) {
           return react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("span", {
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 40
+              lineNumber: 49
             },
             __self: this
           }, _components_subscribeData__WEBPACK_IMPORTED_MODULE_6__["routeRadiosData"].filter(function (itm) {
@@ -45584,7 +45602,7 @@ function (_React$Component) {
           return react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("span", {
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 45
+              lineNumber: 54
             },
             __self: this
           }, text, "\u4EBA");
@@ -45598,7 +45616,7 @@ function (_React$Component) {
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 49
+          lineNumber: 58
         },
         __self: this
       }, "\u897F\u7535\u5BD2\u5047\u9001\u7AD9\u6821\u8F66\u9884\u7EA6\u52A9\u624B"), react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", {
@@ -45608,7 +45626,7 @@ function (_React$Component) {
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 50
+          lineNumber: 59
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_0__["createElement"](antd_lib_button__WEBPACK_IMPORTED_MODULE_5___default.a, {
@@ -45620,13 +45638,13 @@ function (_React$Component) {
         type: "primary",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 51
+          lineNumber: 60
         },
         __self: this
       }, "\u5355\u65E5\u8BE6\u60C5")), react__WEBPACK_IMPORTED_MODULE_0__["createElement"](antd_lib_row__WEBPACK_IMPORTED_MODULE_3___default.a, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 53
+          lineNumber: 62
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_0__["createElement"](antd_lib_col__WEBPACK_IMPORTED_MODULE_4___default.a, {
@@ -45634,16 +45652,47 @@ function (_React$Component) {
         span: 12,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 54
+          lineNumber: 63
         },
         __self: this
-      }, react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("h3", {
+      }, react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("p", {
+        className: "total-p",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 64
+        },
+        __self: this
+      }, react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("p", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 65
+        },
+        __self: this
+      }, "\u706B\u8F66\uFF1A", this.state.totaltrain, "\u4EBA"), react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("p", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 66
+        },
+        __self: this
+      }, "\u9AD8\u94C1\uFF1A", this.state.totalgaotie, "\u4EBA"), react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("p", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 67
+        },
+        __self: this
+      }, "\u98DE\u673A\uFF1A", this.state.totalplane, "\u4EBA"), react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("p", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 68
+        },
+        __self: this
+      }, "\u5171\u8BA1\uFF1A", this.state.totaltrain + this.state.totalgaotie + this.state.totalplane, "\u4EBA")), react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("h3", {
         style: {
           textAlign: 'center'
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 55
+          lineNumber: 70
         },
         __self: this
       }, "\u6309\u603B\u65E5\u671F-\u65F6\u95F4-\u7EC8\u70B9\u7AD9\u7684\u7EDF\u8BA1\u8868"), react__WEBPACK_IMPORTED_MODULE_0__["createElement"](antd_lib_table__WEBPACK_IMPORTED_MODULE_2___default.a, {
@@ -45652,7 +45701,7 @@ function (_React$Component) {
         pagination: false,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 56
+          lineNumber: 71
         },
         __self: this
       }))));
